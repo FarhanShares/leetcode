@@ -3,9 +3,7 @@ class Solution:
         if len(s) != len(t):
             return False  # Anagrams have to be of the same length
 
-        map1 = {}
-        map2 = {}
-
+        map1, map2 = {}, {}
         # Populate the maps with the frequencies of each character
         for i in range(len(s)):
             if s[i] in map1:
