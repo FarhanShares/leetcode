@@ -8,6 +8,7 @@ function merge(left: number[], right: number[]) {
             sorted.push(right.shift() as number)
         }
     }
+    // it's important to maintain the order
     return [...sorted, ...left, ...right]
 }
 
