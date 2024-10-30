@@ -26,21 +26,38 @@ class TreeNode:
 
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
+        # DFS
         if root is None: return 0
 
-        res = 0
-        queue = [(root, float('-inf'))]
+        def dfs(current: TreeNode, current_max: int):
+            if not current: return 0
 
-        while queue:
-            current, current_max = queue.pop(0)
-
-            if current.val >= current_max: res += 1
+            res = 1 if current.val >= current_max else 0
             new_max = max(current_max, current.val)
 
-            if current.left: queue.append((current.left, new_max))
-            if current.right: queue.append((current.right, new_max))
+            res += dfs(current.right, new_max)
+            res += dfs(current.left, new_max)
 
-        return res
+            return res
+
+        return dfs(root, float('-inf'))
+
+        # BFS
+        # if root is None: return 0
+
+        # res = 0
+        # queue = [(root, float('-inf'))]
+
+        # while queue:
+        #     current, current_max = queue.pop(0)
+
+        #     if current.val >= current_max: res += 1
+        #     new_max = max(current_max, current.val)
+
+        #     if current.left: queue.append((current.left, new_max))
+        #     if current.right: queue.append((current.right, new_max))
+
+        # return res
 
 def run_tests():
     # Test case 1
