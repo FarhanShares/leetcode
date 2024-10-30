@@ -26,10 +26,20 @@ class TreeNode:
 
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
+        res = 0
+        queue = [(root, float('-inf'))]
 
-        return 0
+        while queue:
+            current, current_max = queue.pop(0)
+            if current.val >= current_max: res += 1
+            new_max = max(current_max, current.val)
 
-def test_count_good_nodes():
+            if current.left: queue.append((current.left, new_max))
+            if current.right: queue.append((current.right, new_max))
+
+        return res
+
+def run_tests():
     # Test case 1
     root1 = TreeNode(3)
     root1.left = TreeNode(1)
@@ -37,18 +47,18 @@ def test_count_good_nodes():
     root1.left.left = TreeNode(3)
     root1.right.left = TreeNode(1)
     root1.right.right = TreeNode(5)
-    print("Test case 1 result:", Solution.goodNodes(root1))  # Expected output: 4
+    print("Test case 1 -> Expected output: 4 -> Result:", Solution().goodNodes(root1))
 
     # Test case 2
     root2 = TreeNode(3)
     root2.left = TreeNode(3)
     root2.left.left = TreeNode(4)
     root2.left.right = TreeNode(2)
-    print("Test case 2 result:", Solution.goodNodes(root2))  # Expected output: 3
+    print("Test case 2 -> Expected output: 3 -> Result:", Solution().goodNodes(root2))
 
     # Test case 3 (Edge case: single node)
     root3 = TreeNode(1)
-    print("Test case 3 result:", Solution.goodNodes(root3))  # Expected output: 1
+    print("Test case 3 -> Expected output: 1 -> Result:", Solution().goodNodes(root3))
 
 
-test_count_good_nodes()
+run_tests()
