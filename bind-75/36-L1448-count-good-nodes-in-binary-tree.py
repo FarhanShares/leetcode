@@ -26,11 +26,14 @@ class TreeNode:
 
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
+        if root is None: return 0
+
         res = 0
         queue = [(root, float('-inf'))]
 
         while queue:
             current, current_max = queue.pop(0)
+
             if current.val >= current_max: res += 1
             new_max = max(current_max, current.val)
 
