@@ -26,8 +26,7 @@ class TreeNode:
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
         def dfs(node: Optional[TreeNode], cumulative_sums: dict, current_sum: int) -> int:
-            if node is None:
-                return 0
+            if node is None: return 0
 
             # Update the current path sum
             current_sum += node.val
